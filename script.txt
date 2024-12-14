@@ -1,0 +1,33 @@
+$(document).ready(function () {
+    let expression = ''; // To store the user input expression
+
+    // Handle button clicks
+    $('.btn').on('click', function () {
+        const value = $(this).val();
+
+        // Append the value to the expression if it exists
+        if (value) {
+            expression += value;
+            $('#result').val(expression);
+        }
+    });
+
+    // Handle equals button to calculate the expression
+    $('#equals').on('click', function () {
+        try {
+            // Evaluate the expression and update the result field
+            expression = eval(expression).toString();
+            $('#result').val(expression);
+        } catch (error) {
+            // Handle invalid expressions
+            $('#result').val('Error');
+            expression = '';
+        }
+    });
+
+    // Handle clear button to reset the calculator
+    $('#clear').on('click', function () {
+        expression = ''; // Clear the expression
+        $('#result').val(''); // Clear the result field
+    });
+});
